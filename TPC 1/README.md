@@ -5,7 +5,7 @@
 - **Nome:** Leonor Coelho Ferreira Brandão Vilaça
 - **ID:** A115262
 - **Foto:**
-<br> <img src="Leonor.jpEg"  width="15%"/>
+<br> <img src="Leonor.jpeg"  width="15%"/>
 
 
 - **Resumo:** Esta semana o trabalho de casa consistia em concluir o nível 10 do jogo Maze e, em seguida, desenhar a ilustração de um barco no jogo turtle.
