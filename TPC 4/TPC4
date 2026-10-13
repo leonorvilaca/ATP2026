@@ -1,0 +1,118 @@
+import random
+
+def mostrar_menu():
+    print("\n===== MENU =====")
+    print("(1) Criar Lista")
+    print("(2) Ler Lista")
+    print("(3) Soma")
+    print("(4) Média")
+    print("(5) Maior")
+    print("(6) Menor")
+    print("(7) estaOrdenada por ordem crescente")
+    print("(8) estaOrdenada por ordem decrescente")
+    print("(9) Procura um elemento")
+    print("(0) Sair")
+
+def principal():
+    lista = [] 
+    opcao = -1
+    while opcao != 0:
+        mostrar_menu()
+        opcao = int(input("Escolha uma opção para a operação que quer realizar: "))
+
+        if opcao == 0:
+            print("Até à próxima!")
+            print("Lista guardada neste momento: ", lista)
+        elif opcao == 1:
+           lista = criarLista()
+           print("A lista foi criada com sucesso:", lista) 
+        elif opcao == 2:
+            lista = lerLista()
+            print("A lista foi lida com sucesso:", lista) 
+        elif opcao == 3:
+            print("A soma dos elementos da lista", lista , "é: " , somar(lista))
+        elif opcao == 4:
+            print("A média dos elementos da lista", lista, "é: ", media(lista))
+        elif opcao == 5:
+            print("O maior elemento da lista", lista, "é: ", maiorelem(lista))
+        elif opcao == 6:
+            print("O menor elemento da lista", lista, "é: ", menorelem(lista))
+        elif opcao == 7:
+            print(estaOrdenadaCrescente(lista))
+        elif opcao == 8:
+            print(estaOrdenadaDecrescente(lista))
+        elif opcao == 9:
+            x = int(input("Que elemento queres procurar: "))
+            print(f"A posição do elemento {x} é: ", procuraElemento(lista, x))
+        else:
+            print("\nOpção inválida! Tente novamente.")
+
+
+def criarLista():
+    num_elem = int(input("Quantos elementos quer que tenha a sua lista: "))
+    lista = [random.randint(1, 100) for elem in range(num_elem)]
+    return lista
+
+def lerLista():
+    lista = []
+    contador = 0
+    N = int(input("Introduza o número de elementos da sua lista: "))
+    while contador < N:
+        elem = int(input("Introduza um número"))
+        lista.append(elem)
+        contador = contador + 1
+    return lista
+
+def somar(lista):
+    soma = 0
+    for elem in lista:
+        soma = soma + elem
+    return soma
+
+def media(lista):
+    return somar(lista) / len(lista)
+
+def maiorelem(lista):
+    maior = lista[0]  
+    for elem in lista:
+        if elem > maior:
+            maior = elem
+    return maior
+
+def menorelem(lista):
+    menor = lista[0]  
+    for elem in lista:
+        if elem < menor:
+            menor = elem
+    return menor
+
+def estaOrdenadaCrescente(lista):
+    res = "Sim, a lista está ordenada crescentemente"
+    i = 0
+    while i < (len(lista) - 1):
+        if lista[i] > lista[i+1]:
+            res = "Não, a lista não está ordenada crescentemente."
+        i = i + 1
+    return res
+
+def estaOrdenadaDecrescente(lista):
+    res = "Sim, a lista está ordenada descrescentemente"
+    i = 0
+    while i < (len(lista) - 1):
+        if lista[i] < lista[i+1]:
+            res = "Não, a lista não está ordenada descrescentemente."
+        i = i + 1
+    return res
+
+def procuraElemento(lista, elem):
+    for i in range(len(lista)):
+        if lista[i] == elem:
+            return i
+    return -1
+    
+principal()
+
+
+
+        
+

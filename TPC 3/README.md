@@ -1,4 +1,4 @@
-# TPC1: Blocky Games
+# TPC3: Corrida para o 100
 
 ## Autor
 
