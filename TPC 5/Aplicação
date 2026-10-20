@@ -1,0 +1,91 @@
+import json
+
+
+def menu():
+    print()
+    print("1: Criar uma turma")
+    print("2: Inserir um aluno na turma")
+    print("3: Listar a turma")
+    print("4: Consultar um aluno por id")
+    print("8: Guardar a turma em ficheiro")
+    print("9: Carregar uma turma dum ficheiro")
+    print("0: Sair da aplicação")
+
+
+def cria_turma():
+    lista = []
+    return lista
+
+
+def inserir_aluno(turma):
+    nome = input("Indique o nome: ")
+    idAluno = int(input("Indique o ID: "))
+    notaTPC = int(input("Introduza a nota do TPC: "))
+    notaProj = int(input("Introduza a nota do Proj: "))
+    notaTeste = int(input("Introduza a nota do Teste: "))
+    aluno = (nome, idAluno, [notaTPC, notaProj, notaTeste])
+    turma.append(aluno)
+
+
+def listar_turma(turma):
+    if len(turma) == 0:
+        print("A turma está vazia.")
+    for aluno in turma:
+        print(f"{aluno[0]} | ID: {aluno[1]} | Notas: {aluno[2]}")
+
+
+def consultar_aluno(turma):
+    idPedido = int(input("Indique o ID: "))
+    for aluno in turma:
+        if aluno[1] == idPedido:
+            print(f"{aluno[0]} | ID: {aluno[1]} | Notas: {aluno[2]}")
+            return
+    print("Aluno não encontrado.")
+
+
+def guardar_turma(turma):
+    nomeFicheiro = input("Nome do ficheiro (ex: turma.json): ")
+    f = open(nomeFicheiro, "w", encoding="utf-8")
+    json.dump(turma, f, ensure_ascii=False)
+    f.close()
+    print("Turma guardada.")
+
+
+def carregar_turma(turma):
+    nomeFicheiro = input("Nome do ficheiro (ex: turma.json): ")
+    try:
+        f = open(nomeFicheiro, "r", encoding="utf-8")
+    except FileNotFoundError:
+        print("Ficheiro não encontrado.")
+        return turma             
+    dados = json.load(f)
+    f.close()
+    nova = []
+    for a in dados:             
+        nova.append((a[0], a[1], a[2]))
+    print("Turma carregada.")
+    return nova
+
+
+# Programa Principal
+turma = []
+op = -1
+while op != 0:
+    menu()
+    op = int(input("Escolha a operação que deseja realizar: "))
+    if op == 1:
+        turma = cria_turma()
+    elif op == 2:
+        inserir_aluno(turma)
+    elif op == 3:
+        listar_turma(turma)
+    elif op == 4:
+        consultar_aluno(turma)
+    elif op == 8:
+        guardar_turma(turma)
+    elif op == 9:
+        turma = carregar_turma(turma)
+    elif op == 0:
+        print("Até à próxima!")
+    else:
+        print("Opção inválida.")
